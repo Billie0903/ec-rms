@@ -52,3 +52,7 @@ export function dayLabel(dateTime) {
 }
 
 export const timeOf = (dateTime) => (dateTime ? String(dateTime).slice(11, 16) : '');
+
+export const ACCOUNT_STATUS = { invited: 'Chờ kích hoạt', active: 'Đang hoạt động', disabled: 'Đã khóa' };
+export const ACCESS_LEVEL = { full: 'Đầy đủ', basic: 'Cơ bản' };
+export const initials = (name) => name.split(' ').slice(-2).map((w) => w[0]).join('').toUpperCase();
