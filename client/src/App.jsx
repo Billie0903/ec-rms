@@ -1,10 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth.jsx';
+import { ToastProvider } from './hooks/useToast.jsx';
 import { GuestOnly, HomeRedirect, RequireAuth } from './routes/guards.jsx';
 import Layout from './components/Layout.jsx';
 import LoginPage from './features/auth/LoginPage.jsx';
 import ActivatePage from './features/auth/ActivatePage.jsx';
 import ResidentsPage from './features/residents/ResidentsPage.jsx';
+import ResidentDetailPage from './features/residents/ResidentDetailPage.jsx';
+import ResidentFormPage from './features/residents/ResidentFormPage.jsx';
+import ApprovalsPage from './features/admin/ApprovalsPage.jsx';
 import FamilyPage from './features/family/FamilyPage.jsx';
 import AdminPlaceholder from './features/admin/AdminPlaceholder.jsx';
 import NotFoundPage from './features/NotFoundPage.jsx';
@@ -12,6 +16,7 @@ import NotFoundPage from './features/NotFoundPage.jsx';
 export default function App() {
   return (
     <AuthProvider>
+      <ToastProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<GuestOnly />}>
@@ -25,6 +30,9 @@ export default function App() {
 
               <Route element={<RequireAuth roles={['admin', 'operator']} />}>
                 <Route path="/residents" element={<ResidentsPage />} />
+                <Route path="/residents/new" element={<ResidentFormPage />} />
+                <Route path="/residents/:id" element={<ResidentDetailPage />} />
+                <Route path="/residents/:id/edit" element={<ResidentFormPage />} />
               </Route>
 
               <Route element={<RequireAuth roles={['relative']} />}>
@@ -32,7 +40,7 @@ export default function App() {
               </Route>
 
               <Route element={<RequireAuth roles={['admin']} />}>
-                <Route path="/admin/approvals" element={<AdminPlaceholder title="Yêu cầu lưu trữ" />} />
+                <Route path="/admin/approvals" element={<ApprovalsPage />} />
                 <Route path="/admin/users" element={<AdminPlaceholder title="Tài khoản" />} />
                 <Route path="/admin/audit" element={<AdminPlaceholder title="Nhật ký hoạt động" />} />
               </Route>
@@ -42,6 +50,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      </ToastProvider>
     </AuthProvider>
   );
 }
