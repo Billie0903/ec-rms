@@ -10,6 +10,10 @@ import { Alert, EmptyState, ErrorState, Loading } from '../../components/StateVi
 import { FALL_RISK, GENDER, MOBILITY, STATUS, formatDate } from '../../utils/labels.js';
 import { errorMessage } from '../../utils/messages.js';
 import HealthTab from './HealthTab.jsx';
+import MedicationsTab from './MedicationsTab.jsx';
+import VitalsTab from './VitalsTab.jsx';
+import CareNotesTab from './CareNotesTab.jsx';
+import ScheduleTab from './ScheduleTab.jsx';
 
 const TABS = [
   { key: 'profile', label: 'Hồ sơ' },
@@ -94,7 +98,11 @@ export default function ResidentDetailPage() {
       <div role="tabpanel">
         {tab === 'profile' && <ProfileTab r={r} />}
         {tab === 'health' && <HealthTab residentId={id} readOnly={archived} />}
-        {!['profile', 'health'].includes(tab) && (
+        {tab === 'medications' && <MedicationsTab residentId={id} readOnly={archived} />}
+        {tab === 'vitals' && <VitalsTab residentId={id} readOnly={archived} />}
+        {tab === 'notes' && <CareNotesTab residentId={id} readOnly={archived} />}
+        {tab === 'schedule' && <ScheduleTab residentId={id} readOnly={archived} />}
+        {tab === 'relatives' && (
           <div className="card"><EmptyState title="Đang xây dựng" message="Mục này sẽ có trong tuần 2." /></div>
         )}
       </div>
