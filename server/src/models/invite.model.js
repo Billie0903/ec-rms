@@ -23,3 +23,8 @@ export async function create({ userId, tokenHash, expiresAt, createdBy }, db = p
   );
   return result.insertId;
 }
+
+/** Older unused links stop working when a new one is issued. */
+export async function invalidateForUser(userId, db = pool) {
+  await db.query('UPDATE account_invites SET expires_at = NOW() WHERE user_id = ? AND used_at IS NULL AND expires_at > NOW()', [userId]);
+}

@@ -69,7 +69,7 @@ export async function activate({ token, password }, ip) {
 function assertInviteUsable(invite) {
   if (!invite) throw ApiError.notFound('This activation link is not valid.');
   if (invite.used_at) throw ApiError.gone('This activation link has already been used. Please log in.');
-  if (new Date(invite.expires_at.replace(' ', 'T')) < new Date()) {
+  if (new Date(invite.expires_at.replace(' ', 'T')) <= new Date()) {
     throw ApiError.gone('This activation link has expired. Please ask the center for a new one.');
   }
   if (invite.user_status === 'disabled') throw ApiError.forbidden('This account has been disabled.');

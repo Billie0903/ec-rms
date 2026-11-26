@@ -14,6 +14,7 @@ import MedicationsTab from './MedicationsTab.jsx';
 import VitalsTab from './VitalsTab.jsx';
 import CareNotesTab from './CareNotesTab.jsx';
 import ScheduleTab from './ScheduleTab.jsx';
+import RelativesTab from './RelativesTab.jsx';
 
 const TABS = [
   { key: 'profile', label: 'Hồ sơ' },
@@ -102,9 +103,7 @@ export default function ResidentDetailPage() {
         {tab === 'vitals' && <VitalsTab residentId={id} readOnly={archived} />}
         {tab === 'notes' && <CareNotesTab residentId={id} readOnly={archived} />}
         {tab === 'schedule' && <ScheduleTab residentId={id} readOnly={archived} />}
-        {tab === 'relatives' && (
-          <div className="card"><EmptyState title="Đang xây dựng" message="Mục này sẽ có trong tuần 2." /></div>
-        )}
+        {tab === 'relatives' && <RelativesTab residentId={id} residentName={r.fullName} readOnly={archived} />}
       </div>
 
       <ReasonDialog

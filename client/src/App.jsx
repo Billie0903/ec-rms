@@ -10,7 +10,9 @@ import ResidentDetailPage from './features/residents/ResidentDetailPage.jsx';
 import ResidentFormPage from './features/residents/ResidentFormPage.jsx';
 import ApprovalsPage from './features/admin/ApprovalsPage.jsx';
 import FamilyPage from './features/family/FamilyPage.jsx';
-import AdminPlaceholder from './features/admin/AdminPlaceholder.jsx';
+import UsersPage from './features/admin/UsersPage.jsx';
+import AuditPage from './features/admin/AuditPage.jsx';
+import FamilyResidentPage from './features/family/FamilyResidentPage.jsx';
 import NotFoundPage from './features/NotFoundPage.jsx';
 
 export default function App() {
@@ -37,12 +39,13 @@ export default function App() {
 
               <Route element={<RequireAuth roles={['relative']} />}>
                 <Route path="/family" element={<FamilyPage />} />
+                <Route path="/family/:residentId" element={<FamilyResidentPage />} />
               </Route>
 
               <Route element={<RequireAuth roles={['admin']} />}>
                 <Route path="/admin/approvals" element={<ApprovalsPage />} />
-                <Route path="/admin/users" element={<AdminPlaceholder title="Tài khoản" />} />
-                <Route path="/admin/audit" element={<AdminPlaceholder title="Nhật ký hoạt động" />} />
+                <Route path="/admin/users" element={<UsersPage />} />
+                <Route path="/admin/audit" element={<AuditPage />} />
               </Route>
             </Route>
           </Route>
