@@ -194,3 +194,25 @@ textarea.input { resize: vertical; min-height: 80px; }
 .toast-success { background: var(--success); color: #fff; }
 .toast-error { background: var(--danger); color: #fff; }
 @media (max-width: 640px) { .toolbar select, .toolbar .search { flex: 1 1 100%; } }
+
+/* ---- Care records ---- */
+.h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 1rem; }
+@media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.record-list li.inactive { opacity: 0.6; }
+.time-pills { display: flex; gap: 0.3rem; flex-wrap: wrap; margin: 0.3rem 0; }
+.time-list { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.time-item { display: inline-flex; align-items: center; }
+.time-item .input { width: 130px; }
+.flagged { color: var(--danger); font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li { border-left: 3px solid var(--border); padding: 0.25rem 0 0.75rem 1rem; margin-left: 0.25rem; }
+.timeline li.incident { border-left-color: var(--danger); }
+.timeline p { margin: 0.35rem 0; white-space: pre-wrap; }
+.timeline-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.day-group h3 { font-size: 0.95rem; color: var(--muted); margin: 1rem 0 0.25rem; }
+.day-group:first-child h3 { margin-top: 0; }
+.segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.segmented button { background: var(--surface); border: none; padding: 0.5rem 0.9rem; font: inherit; cursor: pointer; min-height: 44px; }
+.segmented button.active { background: var(--primary-soft); color: var(--primary); font-weight: 600; }

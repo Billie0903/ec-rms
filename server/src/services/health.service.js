@@ -3,14 +3,14 @@ import * as health from '../models/health.model.js';
 import * as residentModel from '../models/resident.model.js';
 import * as audit from './audit.service.js';
 
-async function assertEditableResident(residentId) {
+export async function assertEditableResident(residentId) {
   const resident = await residentModel.findById(residentId);
   if (!resident) throw ApiError.notFound('Resident not found.');
   if (resident.status === 'archived') throw ApiError.conflict('This resident is archived. Restore the record before editing.');
   return resident;
 }
 
-async function assertResident(residentId) {
+export async function assertResident(residentId) {
   const resident = await residentModel.findById(residentId);
   if (!resident) throw ApiError.notFound('Resident not found.');
 }
